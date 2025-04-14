@@ -14,6 +14,15 @@ def AboutPageNav():
     st.sidebar.page_link("pages/30_About.py", label="About", icon="🧠")
 
 
+#### ------------------------ MacroMates Pages ------------------------
+def ClientsNav():
+    st.sidebar.page_link("pages/40_Clients.py", label="Clients", icon="👤")
+
+
+def MealLogsNav():
+    st.sidebar.page_link("pages/41_Meal_Logs.py", label="Meal Logs", icon="🍽️")
+
+
 #### ------------------------ Examples for Role of pol_strat_advisor ------------------------
 def PolStratAdvHomeNav():
     st.sidebar.page_link(
@@ -76,6 +85,9 @@ def SideBarLinks(show_home=False):
 
     # Show the other page navigators depending on the users' role.
     if st.session_state["authenticated"]:
+        # MacroMates pages - available to all authenticated users
+        ClientsNav()
+        MealLogsNav()
 
         # Show World Bank Link and Map Demo Link if the user is a political strategy advisor role.
         if st.session_state["role"] == "pol_strat_advisor":

@@ -1,18 +1,40 @@
 import streamlit as st
-from streamlit_extras.app_logo import add_logo
 from modules.nav import SideBarLinks
 
+# Configure the page
+st.set_page_config(layout="wide", page_title="About - MacroMates")
+
+# Display the appropriate sidebar links
 SideBarLinks()
 
-st.write("# About this App")
+st.title("About MacroMates")
 
-st.markdown (
-    """
-    This is a demo app for CS 3200 Course Project.  
+col1, col2 = st.columns([1, 3])
 
-    The goal of this demo is to provide information on the tech stack 
-    being used as well as demo some of the features of the various platforms. 
+with col1:
+    st.image("assets/logo.png", width=200)
+    
+with col2:
+    st.subheader("Your Intelligent Nutrition Companion")
+    st.markdown(
+        """
+        MacroMates is a data-driven nutrition tracking app designed to help users make informed dietary choices without the guesswork.
+        """
+    )
 
-    Stay tuned for more information and features to come!
-    """
-        )
+st.markdown("""
+## Our Mission
+
+At MacroMates, we believe that nutrition shouldn't be complicated. Our mission is to empower individuals to achieve their health and fitness goals through personalized nutrition tracking and intelligent recommendations.
+
+## Key Features
+
+- **Smart Meal Logging**: Easily track your meals and automatically calculate nutritional content
+- **Personalized Goal Setting**: Set and track progress towards your specific nutrition goals
+- **Nutrient Analysis**: Get detailed breakdowns of macronutrients and micronutrients in your diet
+- **Intelligent Recommendations**: Receive suggestions for meal adjustments to meet your goals
+- **Progress Tracking**: Monitor your nutrition journey with intuitive visualizations
+
+""")
+
+
