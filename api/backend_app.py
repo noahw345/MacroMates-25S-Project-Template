@@ -11,10 +11,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Import blueprints
-from api.backend.customers import customers_bp
-from api.backend.products import products_bp
-from api.backend.clients import clients_bp
-from api.backend.meals import meals_bp  # Import the new meals blueprint
+from backend.clients import clients_bp
+from backend.meals import meals_bp  # Import the new meals blueprint
 
 def create_app():
     # Initialize Flask app
@@ -22,8 +20,6 @@ def create_app():
     CORS(app)  # Enable CORS for all routes
 
     # Register blueprints
-    app.register_blueprint(customers_bp, url_prefix='/api')
-    app.register_blueprint(products_bp, url_prefix='/api')
     app.register_blueprint(clients_bp, url_prefix='/api')
     app.register_blueprint(meals_bp, url_prefix='/api')  # Register meals blueprint
     

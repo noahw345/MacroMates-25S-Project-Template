@@ -5,7 +5,7 @@
 from flask import Blueprint, request, jsonify
 from datetime import datetime 
 import pymysql
-from api.backend.db import get_db_connection
+from backend.db import get_db_connection
 
 # Create the blueprint
 clients_bp = Blueprint('clients', __name__)
