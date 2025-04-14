@@ -1,3 +1,7 @@
+-- Create Database
+CREATE DATABASE IF NOT EXISTS NutritionBuddy;
+USE NutritionBuddy;
+
 -- Drop existing tables in reverse dependency order to avoid foreign key issues
 DROP TABLE IF EXISTS Nutrient;
 DROP TABLE IF EXISTS ProgressReport;
@@ -9,10 +13,6 @@ DROP TABLE IF EXISTS SecurityStatus;
 DROP TABLE IF EXISTS ActivityLog;
 DROP TABLE IF EXISTS Dataset;
 DROP TABLE IF EXISTS SystemPerformance;
- 
--- Create Database
-CREATE DATABASE IF NOT EXISTS NutritionBuddy;
-USE NutritionBuddy;
  
 -- Table: SystemPerformance
 CREATE TABLE SystemPerformance (
