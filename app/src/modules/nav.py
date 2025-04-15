@@ -79,7 +79,9 @@ def CEOSystemPerformanceNav():
 
 #### ------------------------ Student Athlete Role ------------------------
 def StudentAthleteLandingNav():
-    st.sidebar.page_link("pages/35_ATHLETE_landing", label="Student Athlete Landing Home", icon="🧍")
+    st.sidebar.page_link("pages/35_ATHLETE_landing.py", label="Student Athlete Landing Home", icon="🧍")
+    st.sidebar.page_link("pages/36_ATHLETE_weight.py", label="Student Athlete Weight Management", icon="⚖️")
+    st.sidebar.page_link("pages/37_ATHLETE_macroworkout.py", label="Student Athlete Macros and Workout", icon="🏋️")
 
 # --------------------------------Links Function -----------------------------------------------
 def SideBarLinks(show_home=False):
