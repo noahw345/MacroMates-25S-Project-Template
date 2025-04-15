@@ -12,13 +12,13 @@ st.set_page_config(layout="wide", page_title="System Administrator - MacroMates"
 SideBarLinks()
 
 st.title("System Administrator Dashboard")
-st.markdown("Manage system performance, datasets, and security protocols here.")
+st.markdown("Manage system performance and datasets here.")
 
 # Define your API base URL (adjust if needed)
 API_BASE_URL = "http://host.docker.internal:4001/api"
 
 
-# Section 1: System Performance
+# Section 1: System Performance Metrics
 
 st.header("System Performance Metrics")
 
@@ -67,6 +67,33 @@ if datasets:
 else:
     st.info("No datasets available.")
 
+# Create a New Dataset Entry (POST)
+st.subheader("Create a New Dataset Entry")
+with st.form("create_dataset_form"):
+    new_dataset_name = st.text_input("Dataset Name")
+    new_dataset_description = st.text_area("Dataset Description")
+    new_dataset_status = st.selectbox("Status", ["Active", "Pending", "Inactive"])
+    create_submit = st.form_submit_button("Create Dataset")
+    if create_submit:
+        if not new_dataset_name or not new_dataset_description or not new_dataset_status:
+            st.error("Please fill out all fields to create a new dataset.")
+        else:
+            try:
+                url = f"{API_BASE_URL}/datasets"
+                data = {
+                    "dataset_name": new_dataset_name,
+                    "data_description": new_dataset_description,
+                    "status": new_dataset_status
+                }
+                response = requests.post(url, json=data, timeout=5)
+                if response.status_code == 201:
+                    st.success("Dataset created successfully!")
+                else:
+                    st.error(f"Creation failed: {response.status_code} - {response.text}")
+            except Exception as e:
+                st.error(f"Error connecting to API: {e}")
+
+# Update a Dataset Entry (PUT)
 st.subheader("Update a Dataset Entry")
 with st.form("update_dataset_form"):
     dataset_id = st.number_input("Dataset ID to update", min_value=1, step=1)
@@ -87,6 +114,7 @@ with st.form("update_dataset_form"):
             except Exception as e:
                 st.error(f"Error connecting to API: {e}")
 
+# Remove Unused Dataset Entry (DELETE)
 st.subheader("Remove Unused Dataset Entry")
 with st.form("delete_dataset_form"):
     delete_dataset_id = st.number_input("Dataset ID to delete", min_value=1, step=1, key="delete_dataset")
@@ -103,45 +131,7 @@ with st.form("delete_dataset_form"):
             st.error(f"Error connecting to API: {e}")
 
 
-# Section 3: Security Protocols
-
-st.header("Security Protocols")
-@st.cache_data(ttl=60)
-def fetch_security_status():
-    try:
-        response = requests.get(f"{API_BASE_URL}/security", timeout=5)
-        if response.status_code == 200:
-            return response.json()
-        else:
-            st.error(f"Error fetching security protocols: {response.status_code}")
-            return []
-    except Exception as e:
-        st.error(f"Error: {e}")
-        return []
-
-security_data = fetch_security_status()
-if security_data:
-    df_security = pd.DataFrame(security_data)
-    st.dataframe(df_security, use_container_width=True)
-else:
-    st.info("No security protocol data available.")
-
-st.subheader("Add Security Protocol")
-with st.form("add_security_protocol_form"):
-    security_status = st.selectbox("Security Status", ["Normal", "Alert", "Warning"])
-    log_id = st.number_input("Associated Log ID", min_value=1, step=1)
-    protocol_submit = st.form_submit_button("Add Protocol")
-    if protocol_submit:
-        try:
-            url = f"{API_BASE_URL}/security"
-            data = {"status": security_status, "log_id": log_id}
-            response = requests.post(url, json=data, timeout=5)
-            if response.status_code == 201:
-                st.success("Security protocol added successfully!")
-            else:
-                st.error(f"Failed to add protocol: {response.status_code} - {response.text}")
-        except Exception as e:
-            st.error(f"Error: {e}")
+# Data Integrity Checks
 
 st.markdown("### Data Integrity Checks")
 st.info("Ensure data is valid by reviewing system logs and dataset entries.")
