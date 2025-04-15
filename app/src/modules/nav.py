@@ -64,6 +64,18 @@ def AdminPageNav():
         "pages/21_ML_Model_Mgmt.py", label="ML Model Management", icon="🏢"
     )
 
+#### ------------------------ CEO Role ------------------------
+def CEOHomeNav():
+    st.sidebar.page_link("pages/31_CEO_landing.py", label="CEO Home", icon="💼")
+
+def CEOClientEngagementNav():
+    st.sidebar.page_link("pages/32_CEO_client_engagement.py", label="Client Engagement", icon="📈")
+
+def CEOFinancialOverviewNav():
+    st.sidebar.page_link("pages/33_CEO_financial_overview.py", label="Financial Overview", icon="💰")
+
+def CEOSystemPerformanceNav():
+    st.sidebar.page_link("pages/34_CEO_system_performance.py", label="System Performance", icon="⚙️")
 
 # --------------------------------Links Function -----------------------------------------------
 def SideBarLinks(show_home=False):
