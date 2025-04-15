@@ -7,6 +7,7 @@ from flask_cors import CORS
 import os
 from dotenv import load_dotenv
 from backend.ceo_routes import ceo_bp
+from backend.athlete_routes import student_athlete_bp
 
 # Load environment variables
 load_dotenv()
@@ -25,6 +26,8 @@ def create_app():
     app.register_blueprint(meals_bp, url_prefix='/api')  # Register meals blueprint
     app.register_blueprint(ceo_bp, url_prefix='/api')
     app.logger.info("CEO blueprint registered")
+    app.register_blueprint(student_athlete_bp, url_prefix='/api')
+    app.logger.info("Student athlete blueprint registered")
     
     # Default route
     @app.route('/')

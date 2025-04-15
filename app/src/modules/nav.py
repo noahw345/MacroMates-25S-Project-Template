@@ -77,6 +77,10 @@ def CEOFinancialOverviewNav():
 def CEOSystemPerformanceNav():
     st.sidebar.page_link("pages/34_CEO_system_performance.py", label="System Performance", icon="⚙️")
 
+#### ------------------------ Student Athlete Role ------------------------
+def StudentAthleteLandingNav():
+    st.sidebar.page_link("pages/35_ATHLETE_landing", label="Student Athlete Landing Home", icon="🧍")
+
 # --------------------------------Links Function -----------------------------------------------
 def SideBarLinks(show_home=False):
     """
