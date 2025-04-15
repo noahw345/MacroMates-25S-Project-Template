@@ -90,7 +90,10 @@ def SideBarLinks(show_home=False):
     """
 
     # add a logo to the sidebar always
-    st.sidebar.image("../assets/logo.png", width=150)
+    import os
+    image_path = os.path.join(os.path.dirname(__file__), "..", "assets", "logo.png")
+    st.sidebar.image(image_path, width=150)
+
 
     # If there is no logged in user, redirect to the Home (Landing) page
     if "authenticated" not in st.session_state:
