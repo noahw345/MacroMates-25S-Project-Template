@@ -1,0 +1,28 @@
+name: project-app-testing
+services:
+  app-test:
+    build: ./app
+    container_name: web-app-test
+    hostname: web-app
+    volumes: ["./app/src:/appcode"]
+    ports:
+      - 8502:8501
+
+  api-test:
+    build: ./api
+    container_name: web-api-test
+    hostname: web-api
+    volumes: ["./api:/apicode"]
+    ports:
+      - 4001:4000
+
+  db-test:
+    env_file:
+      - ./api/.env
+    image: mysql:9
+    container_name: mysql-db-test
+    hostname: db
+    volumes:
+      - ./database-files:/docker-entrypoint-initdb.d/:ro
+    ports:
+      - 3201:3306

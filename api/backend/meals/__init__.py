@@ -1,0 +1,1 @@
+from backend.meals.meal_routes import meals_bp 
