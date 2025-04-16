@@ -3,7 +3,10 @@
 # This file has function to add certain functionality to the left side bar of the app
 
 import streamlit as st
+import inspect
+import logging
 
+logger = logging.getLogger(__name__)
 
 #### ------------------------ General ------------------------
 def HomeNav():
@@ -83,52 +86,88 @@ def StudentAthleteLandingNav():
 # --------------------------------Links Function -----------------------------------------------
 def SideBarLinks(show_home=False):
     """
-    This function handles adding links to the sidebar of the app based upon the logged-in user's role, which was put in the streamlit session_state object when logging in.
+    Add links to the sidebar based on the user's role.
+    
+    Inputs:
+        show_home - boolean, controls whether to add a link back to 
+                    home in the sidebar
     """
-
-    # add a logo to the sidebar always
-    import os
-    image_path = os.path.join(os.path.dirname(__file__), "..", "assets", "logo.png")
-    st.sidebar.image(image_path, width=150)
-
-
-    # If there is no logged in user, redirect to the Home (Landing) page
-    if "authenticated" not in st.session_state:
-        st.session_state.authenticated = False
-        st.switch_page("Home.py")
-
+    # if we don't have 'authenticated' in the session_state, 
+    # that means we're probably on the home page
+    role = st.session_state.get('role', None)
+    
+    # Create the Home link in the sidebar
     if show_home:
-        # Show the Home page link (the landing page)
-        HomeNav()
+        st.sidebar.page_link("Home.py", label="Home")
 
-    # Show the other page navigators depending on the users' role.
-    if st.session_state["authenticated"]:
-        # MacroMates pages - available to all authenticated users
-        ClientsNav()
-        MealLogsNav()
+    # Even if not authenticated, include the About link
+    st.sidebar.page_link("pages/30_About.py", label="About")
+    
+    # Add links to the sidebar based on the user's role
+    if st.session_state.get('authenticated', False):
+        # Only show the following links if the user is authenticated
+        
+        # Add a divider and welcome message
+        st.sidebar.divider()
+        st.sidebar.write(f"Welcome, {st.session_state.get('first_name', 'User')}")
+        st.sidebar.divider()
 
-        # Show World Bank Link and Map Demo Link if the user is a political strategy advisor role.
-        if st.session_state["role"] == "pol_strat_advisor":
-            PolStratAdvHomeNav()
-            WorldBankVizNav()
-            MapDemoNav()
+        # Add role-specific links
+        if role == 'administrator':
+            SysAdminLinks()
+        elif role == 'ceo':
+            CEOLinks()
+        elif role == 'nutrition_client':
+            ClientLinks()
+        elif role == 'nutritionist':
+            NutritionistLinks()
 
-        # If the user role is usaid worker, show the Api Testing page
-        if st.session_state["role"] == "usaid_worker":
-            PredictionNav()
-            ApiTestNav()
-            ClassificationNav()
+        # Add a divider for spacing
+        st.sidebar.divider()
+        
+        # Display the username and a logout button
+        logout_container = st.sidebar.container()
+        logout_container.caption("Click below to logout")
+        
+        if logout_container.button("Logout"):
+            # Clear the session state
+            for key in list(st.session_state.keys()):
+                del st.session_state[key]
+                
+            # Redirect to the home page
+            st.rerun()
 
-        # If the user is an administrator, give them access to the administrator pages
-        if st.session_state["role"] == "administrator":
-            AdminPageNav()
 
-    # Always show the About page at the bottom of the list of links
-    AboutPageNav()
+def SysAdminLinks():
+    """Add System Administrator links to the sidebar"""
+    st.sidebar.page_link("pages/50_System_Admin.py", label="System Admin")
+    st.sidebar.page_link("pages/40_Clients.py", label="Clients")
+    st.sidebar.page_link("pages/41_Meal_Logs.py", label="Meal Logs")
+    st.sidebar.page_link("pages/42_Client_Dashboard.py", label="Client Dashboard")
+    st.sidebar.page_link("pages/44_Trend_Analysis.py", label="Trend Analysis")
 
-    if st.session_state["authenticated"]:
-        # Always show a logout button if there is a logged in user
-        if st.sidebar.button("Logout"):
-            del st.session_state["role"]
-            del st.session_state["authenticated"]
-            st.switch_page("Home.py")
+
+def CEOLinks():
+    """Add CEO links to the sidebar"""
+    st.sidebar.page_link("pages/31_CEO_landing.py", label="CEO Dashboard")
+    st.sidebar.page_link("pages/32_CEO_client_engagement.py", label="Client Engagement")
+    st.sidebar.page_link("pages/33_CEO_financial_overview.py", label="Financial Overview")
+    st.sidebar.page_link("pages/34_CEO_system_preferences.py", label="System Preferences")
+    st.sidebar.page_link("pages/40_Clients.py", label="Clients")
+    st.sidebar.page_link("pages/42_Client_Dashboard.py", label="Client Dashboard")
+
+
+def ClientLinks():
+    """Add client links to the sidebar"""
+    st.sidebar.page_link("pages/35_ATHLETE_landing.py", label="My Dashboard")
+    st.sidebar.page_link("pages/36_ATHLETE_weight.py", label="Weight Tracking")
+    st.sidebar.page_link("pages/37_ATHLETE_macroworkout.py", label="Macros & Workouts")
+    st.sidebar.page_link("pages/41_Meal_Logs.py", label="My Meal Logs")
+
+
+def NutritionistLinks():
+    """Add nutritionist links to the sidebar"""
+    st.sidebar.page_link("pages/40_Clients.py", label="Clients")
+    st.sidebar.page_link("pages/41_Meal_Logs.py", label="Meal Logs")
+    st.sidebar.page_link("pages/42_Client_Dashboard.py", label="Client Dashboard")
+    st.sidebar.page_link("pages/44_Trend_Analysis.py", label="Trend Analysis")

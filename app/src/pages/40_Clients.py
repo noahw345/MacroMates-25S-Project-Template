@@ -19,7 +19,7 @@ st.subheader("View and manage nutrition clients")
 # API configuration
 # We're using host.docker.internal which is a special DNS name that Docker provides
 # to allow containers to access services running on the host machine
-API_BASE_URL = "http://host.docker.internal:4001"
+API_BASE_URL = "http://host.docker.internal:4000"
 
 # Function to fetch clients from API
 def fetch_clients():

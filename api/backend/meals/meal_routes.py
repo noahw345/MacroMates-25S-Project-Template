@@ -401,7 +401,7 @@ def get_daily_summary():
             category = nutrient['Category']
             if category not in nutrients_by_category:
                 nutrients_by_category[category] = []
-                
+            
             nutrients_by_category[category].append({
                 'name': nutrient['Name'],
                 'total': float(nutrient['total']),
@@ -420,4 +420,4 @@ def get_daily_summary():
     
     finally:
         cursor.close()
-        conn.close() 
+        conn.close()

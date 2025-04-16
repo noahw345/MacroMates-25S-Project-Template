@@ -17,7 +17,7 @@ st.title("System Administrator Dashboard")
 st.markdown("Monitor system performance and analyze activity logs.")
 
 # Define your API base URL
-API_BASE_URL = "http://host.docker.internal:4001/api"
+API_BASE_URL = "http://host.docker.internal:4000/api"
 
 # Section 1: System Performance Overview
 

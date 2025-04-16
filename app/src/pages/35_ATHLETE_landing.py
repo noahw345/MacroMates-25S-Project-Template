@@ -31,21 +31,6 @@ st.markdown("---")
 # Adjust this URL to point to your Flask API
 API_BASE_URL = "http://host.docker.internal:4000/api"
 
-# 1) Fetch estimated daily maintenance calories
-st.subheader("Maintenance Calories")
-try:
-    response = requests.get(f"{API_BASE_URL}/athlete/maintenance_calories")
-    response.raise_for_status()
-    maintenance_data = pd.DataFrame(response.json())
-    if not maintenance_data.empty:
-        st.dataframe(maintenance_data)
-    else:
-        st.warning("No maintenance calorie data available.")
-except requests.exceptions.RequestException as e:
-    st.error(f"Error fetching maintenance calories data: {e}")
-
-st.markdown("---")
-
 # 2) Reminders
 st.subheader("Reminders")
 try:

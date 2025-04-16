@@ -21,10 +21,7 @@ st.subheader("View and manage client meal logs")
 # API configuration
 # We're using host.docker.internal which is a special DNS name that Docker provides
 # to allow containers to access services running on the host machine
-API_BASE_URL = "http://host.docker.internal:4001"
-
-# For debugging
-st.info(f"Using API at: {API_BASE_URL}/api/clients")
+API_BASE_URL = "http://host.docker.internal:4000"
 
 # First, we need to get the list of clients for the client selector
 def fetch_clients():

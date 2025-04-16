@@ -40,21 +40,6 @@ except requests.exceptions.RequestException as e:
 
 st.markdown("---")
 
-# 2) Fetch estimated weight change over time
-st.subheader("Estimated Weight Change")
-try:
-    response = requests.get(f"{API_BASE_URL}/athlete/weight_change")
-    response.raise_for_status()
-    weight_change_data = pd.DataFrame(response.json())
-    if not weight_change_data.empty:
-        st.dataframe(weight_change_data)
-    else:
-        st.warning("No weight change data available.")
-except requests.exceptions.RequestException as e:
-    st.error(f"Error fetching weight change data: {e}")
-
-st.markdown("---")
-
 st.markdown("""
 ### Quick Navigation
 Use the sidebar to view daily macros, workout plans, or return to your home page.

@@ -31,7 +31,6 @@ At MacroMates, we believe that nutrition shouldn't be complicated. Our mission i
 
 - **Smart Meal Logging**: Easily track your meals and automatically calculate nutritional content
 - **Personalized Goal Setting**: Set and track progress towards your specific nutrition goals
-- **Nutrient Analysis**: Get detailed breakdowns of macronutrients and micronutrients in your diet
 - **Intelligent Recommendations**: Receive suggestions for meal adjustments to meet your goals
 - **Progress Tracking**: Monitor your nutrition journey with intuitive visualizations
 

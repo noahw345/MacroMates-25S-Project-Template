@@ -25,21 +25,6 @@ st.markdown("---")
 
 API_BASE_URL = "http://host.docker.internal:4000/api"
 
-# 1) Daily macro breakdown
-st.subheader("Daily Macro Breakdown")
-try:
-    response = requests.get(f"{API_BASE_URL}/athlete/daily_macro_breakdown")
-    response.raise_for_status()
-    macro_data = pd.DataFrame(response.json())
-    if not macro_data.empty:
-        st.dataframe(macro_data)
-    else:
-        st.warning("No daily macro breakdown available.")
-except requests.exceptions.RequestException as e:
-    st.error(f"Error fetching daily macro breakdown: {e}")
-
-st.markdown("---")
-
 # 2) Workout plan alongside calorie intake
 st.subheader("Workout Plan & Calorie Intake")
 try:
