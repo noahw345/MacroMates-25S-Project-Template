@@ -143,8 +143,6 @@ def SysAdminLinks():
     st.sidebar.page_link("pages/50_System_Admin.py", label="System Admin")
     st.sidebar.page_link("pages/40_Clients.py", label="Clients")
     st.sidebar.page_link("pages/41_Meal_Logs.py", label="Meal Logs")
-    st.sidebar.page_link("pages/42_Client_Dashboard.py", label="Client Dashboard")
-    st.sidebar.page_link("pages/44_Trend_Analysis.py", label="Trend Analysis")
 
 
 def CEOLinks():

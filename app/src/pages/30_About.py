@@ -4,8 +4,8 @@ from modules.nav import SideBarLinks
 # Configure the page
 st.set_page_config(layout="wide", page_title="About - MacroMates")
 
-# Display the appropriate sidebar links
-SideBarLinks()
+# Display the appropriate sidebar links - show Home button
+SideBarLinks(show_home=True)
 
 st.title("About MacroMates")
 
