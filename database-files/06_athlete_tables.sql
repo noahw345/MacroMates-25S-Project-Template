@@ -52,7 +52,12 @@ INSERT INTO Athlete (athlete_id, name, weight_kg, height_cm, age, activity_level
 VALUES 
   (1, 'John Doe', 75.5, 180.0, 25, 'moderate'),
   (2, 'Jane Smith', 62.0, 165.0, 22, 'high'),
-  (3, 'Bob Johnson', 85.0, 190.0, 30, 'low');
+  (3, 'Bob Johnson', 85.0, 190.0, 30, 'low'),
+  (4, 'Sarah Miller', 58.5, 163.0, 28, 'high'),
+  (5, 'Mike Thompson', 92.3, 188.0, 32, 'moderate'),
+  (6, 'Lisa Chen', 55.0, 160.0, 24, 'moderate'),
+  (7, 'Carlos Rodriguez', 78.2, 175.0, 27, 'high'),
+  (8, 'Emma Wilson', 60.8, 168.0, 23, 'low');
 
 -- Insert workout plans
 INSERT INTO Workout_Plan (athlete_id, goal, start_date, end_date)

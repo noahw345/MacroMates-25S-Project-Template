@@ -7,7 +7,7 @@ st.set_page_config(layout="wide", page_title="About - MacroMates")
 # Display the appropriate sidebar links - show Home button
 SideBarLinks(show_home=True)
 
-st.title("About MacroMates")
+st.title("About Nutrition Buddy")
 
 col1, col2 = st.columns([1, 3])
 
@@ -18,7 +18,7 @@ with col2:
     st.subheader("Your Intelligent Nutrition Companion")
     st.markdown(
         """
-        MacroMates is a data-driven nutrition tracking app designed to help users make informed dietary choices without the guesswork.
+        Nutrition Buddy is a data-driven nutrition tracking app designed to help users make informed dietary choices without the guesswork.
         """
     )
 
