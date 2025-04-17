@@ -2,6 +2,7 @@ import streamlit as st
 import requests
 import pandas as pd
 import plotly.express as px
+from modules.nav import SideBarLinks
 
 # Set page config
 st.set_page_config(
@@ -9,6 +10,9 @@ st.set_page_config(
     page_icon="👥",
     layout="wide"
 )
+
+# Display the appropriate sidebar links
+SideBarLinks()
 
 # Title
 st.title("👥 Client Management")

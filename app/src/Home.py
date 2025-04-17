@@ -75,7 +75,7 @@ with col1:
         st.session_state['authenticated'] = True
         st.session_state['role'] = 'nutritionist'
         st.session_state['first_name'] = 'Jamie'
-        st.switch_page('pages/40_Clients.py')
+        st.switch_page('pages/51_Nutritionist_landing.py')
 
 with col2:
     if st.button('Log in as System Administrator', 

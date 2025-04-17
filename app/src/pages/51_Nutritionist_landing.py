@@ -3,6 +3,7 @@ import requests
 import pandas as pd
 import plotly.express as px
 from datetime import datetime, timedelta
+from modules.nav import SideBarLinks
 
 # Set page config
 st.set_page_config(
@@ -10,6 +11,9 @@ st.set_page_config(
     page_icon="🥗",
     layout="wide"
 )
+
+# Display the appropriate sidebar links
+SideBarLinks()
 
 # Title
 st.title("🥗 Nutritionist Dashboard")
