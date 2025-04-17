@@ -23,6 +23,23 @@ def MealLogsNav():
     st.sidebar.page_link("pages/41_Meal_Logs.py", label="Meal Logs", icon="🍽️")
 
 
+#### ------------------------ Nutritionist Pages ------------------------
+def NutritionistDashboardNav():
+    st.sidebar.page_link("pages/51_Nutritionist_landing.py", label="Dashboard", icon="🥗")
+
+
+def ClientManagementNav():
+    st.sidebar.page_link("pages/52_Client_Management.py", label="Client Management", icon="👥")
+
+
+def ClientProgressNav():
+    st.sidebar.page_link("pages/53_Client_Progress.py", label="Client Progress", icon="📈")
+
+
+def NutritionalAnalysisNav():
+    st.sidebar.page_link("pages/54_Nutritional_Analysis.py", label="Nutritional Analysis", icon="🔬")
+
+
 #### ------------------------ Examples for Role of pol_strat_advisor ------------------------
 def PolStratAdvHomeNav():
     st.sidebar.page_link(
@@ -97,25 +114,26 @@ def SideBarLinks(show_home=False):
 
     # Show the other page navigators depending on the users' role.
     if st.session_state["authenticated"]:
-        # MacroMates pages - available to all authenticated users
-        ClientsNav()
-        MealLogsNav()
-
-        # Show World Bank Link and Map Demo Link if the user is a political strategy advisor role.
-        if st.session_state["role"] == "pol_strat_advisor":
+        # Show navigation based on user role
+        if st.session_state["role"] == "nutritionist":
+            NutritionistDashboardNav()
+            ClientManagementNav()
+            ClientProgressNav()
+            NutritionalAnalysisNav()
+        elif st.session_state["role"] == "pol_strat_advisor":
             PolStratAdvHomeNav()
             WorldBankVizNav()
             MapDemoNav()
-
-        # If the user role is usaid worker, show the Api Testing page
-        if st.session_state["role"] == "usaid_worker":
+        elif st.session_state["role"] == "usaid_worker":
             PredictionNav()
             ApiTestNav()
             ClassificationNav()
-
-        # If the user is an administrator, give them access to the administrator pages
-        if st.session_state["role"] == "administrator":
+        elif st.session_state["role"] == "administrator":
             AdminPageNav()
+        else:
+            # Default navigation for other roles
+            ClientsNav()
+            MealLogsNav()
 
     # Always show the About page at the bottom of the list of links
     AboutPageNav()
