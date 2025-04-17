@@ -92,5 +92,5 @@ with col2:
         st.session_state['authenticated'] = True
         st.session_state['role'] = 'ceo'
         st.session_state['first_name'] = 'CEO'
-        st.switch_page('pages/31_Clients.py')
+        st.switch_page('pages/31_CEO_landing.py')
 

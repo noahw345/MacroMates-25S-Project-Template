@@ -27,23 +27,6 @@ with col2:
 st.markdown("""---""")
 
 API_BASE_URL = "http://host.docker.internal:4000/api"
-try:
-    response = requests.get(f"{API_BASE_URL}/ceo/key_metrics") 
-    response.raise_for_status()
-    metrics_data = response.json()
-    metrics_df = pd.DataFrame(metrics_data)
-except requests.exceptions.RequestException as e:
-    st.error(f"Error fetching key metrics: {e}")
-    metrics_df = pd.DataFrame() 
-
-st.subheader("Key Metrics")
-if not metrics_df.empty:
-    col1, col2, col3, col4 = st.columns(4)
-    cols = [col1, col2, col3, col4]
-    for i, metric in enumerate(metrics_df.to_dict('records')):
-        cols[i].metric(label=metric['Metric'], value=metric['Value'])
-else:
-    st.warning("Key metrics not available.")
 
 st.markdown("""---""")
 
