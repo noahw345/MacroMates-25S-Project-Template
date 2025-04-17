@@ -86,5 +86,11 @@ with col2:
         st.session_state['first_name'] = 'Admin'
         st.switch_page('pages/40_Clients.py')
 
-
+    if st.button('Log in as CEO', 
+                type = 'primary', 
+                use_container_width=True):
+        st.session_state['authenticated'] = True
+        st.session_state['role'] = 'ceo'
+        st.session_state['first_name'] = 'CEO'
+        st.switch_page('pages/31_Clients.py')
 
