@@ -152,7 +152,6 @@ def CEOLinks():
     st.sidebar.page_link("pages/33_CEO_financial_overview.py", label="Financial Overview")
     st.sidebar.page_link("pages/34_CEO_system_preferences.py", label="System Preferences")
     st.sidebar.page_link("pages/40_Clients.py", label="Clients")
-    st.sidebar.page_link("pages/42_Client_Dashboard.py", label="Client Dashboard")
 
 
 def ClientLinks():
@@ -167,5 +166,3 @@ def NutritionistLinks():
     """Add nutritionist links to the sidebar"""
     st.sidebar.page_link("pages/40_Clients.py", label="Clients")
     st.sidebar.page_link("pages/41_Meal_Logs.py", label="Meal Logs")
-    st.sidebar.page_link("pages/42_Client_Dashboard.py", label="Client Dashboard")
-    st.sidebar.page_link("pages/44_Trend_Analysis.py", label="Trend Analysis")
